@@ -1303,3 +1303,170 @@ section {
             border-radius: 500px;
             cursor: pointer;
 }
+
+/* Reset any conflicting styles */
+#calculate {
+  all: unset; /* Reset all inherited styles */
+  background-color: #17C3B2; /* Teal color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block; /* Ensure it behaves like a button */
+  text-align: center; /* Center text */
+}
+
+#calculate:hover {
+  background-color: #14a097; /* Darker teal for hover */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+#calculate:active {
+  transform: translateY(0); /* Reset lift on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow on click */
+}
+/* Hide the fare table initially */
+.hidden {
+  display: none;
+}
+
+/* Fare table styling */
+/* Hide the fare table initially */
+/* Hide the fare table initially */
+.hidden {
+  display: none;
+}
+
+/* Fare table styling */
+/* Fare table styling */
+.fare-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: separate;
+  border-spacing: 20px;
+  background-color: transparent;
+}
+
+.fare-table td {
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Neon hover effect */
+.fare-table td:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(23, 195, 178, 0.6), 0 0 15px rgba(23, 195, 178, 0.4);
+  cursor: pointer;
+}
+
+/* Fare logo styling */
+.fare-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Service name styling */
+.fare-table p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+/* Fare price styling */
+.fare-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #17C3B2;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight the cheapest fare */
+.fare-table .cheapest {
+  background: linear-gradient(135deg, #17C3B2, #14a097);
+  color: #fff;
+}
+
+.fare-table .cheapest p {
+  color: #fff;
+}
+
+.fare-table .cheapest .fare-price {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Neon glow for cheapest fare */
+.fare-table .cheapest:hover {
+  box-shadow: 0 8px 25px rgba(23, 195, 178, 0.8), 0 0 20px rgba(23, 195, 178, 0.6);
+}
+/* General styling for input fields */
+#origin, #destination {
+  width: 90%; /* Slightly extended width (adjust as needed) */
+  max-width: 500px; /* Optional: Set a maximum width */
+  padding: 15px 20px; /* Comfortable padding */
+  margin: 10px 0; /* Spacing between inputs */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  border: 2px solid #e0e0e0; /* Light gray border */
+  border-radius: 30px; /* Rounded corners */
+  font-size: 16px; /* Readable font size */
+  color: #333; /* Dark text color */
+  background-color: #f9f9f9; /* Light background */
+  transition: all 0.3s ease; /* Smooth transitions */
+  outline: none; /* Remove default outline */
+}
+
+/* Placeholder styling */
+#origin::placeholder, #destination::placeholder {
+  color: #999; /* Light gray placeholder text */
+  font-style: italic; /* Italic placeholder */
+}
+
+/* Focus state styling */
+#origin:focus, #destination:focus {
+  border-color: #007BFF; /* Blue border on focus */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3); /* Subtle glow effect */
+  background-color: #fff; /* White background on focus */
+}
+
+/* Hover state styling */
+#origin:hover, #destination:hover {
+  border-color: #007BFF; /* Blue border on hover */
+}
+
+/* Optional: Add icons to the left of the inputs */
+.input-container {
+  position: relative;
+  width: 90%; /* Match input width */
+  max-width: 500px; /* Optional: Set a maximum width */
+  margin: 10px auto; /* Center the inputs */
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999; /* Icon color */
+  font-size: 18px; /* Icon size */
+}
+
+#origin, #destination {
+  width: 100%;
+  padding-left: 40px; /* Add padding for icon */
+}

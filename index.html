@@ -68,7 +68,10 @@
         margin-top: 15px;
         font-size: 18px;
         font-weight: bold;
-      }
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+      
     </style>
     <!-- Load TomTom Maps SDK -->
     <link
@@ -79,16 +82,39 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
   </head>
   <body>
-    <h1>FareFinder - Distance Calculator (TomTom API)</h1>
+    <h1></h1>
     <div id="map"></div>
     <div class="container">
       <input id="origin" type="text" placeholder="Enter starting location" />
       <input id="destination" type="text" placeholder="Enter destination" />
-      <button id="calculate">Calculate Distance</button>
-      <div id="result">
+      <button id="calculate">Calculate Distance</button>      <div id="result">
         <p id="distance"></p>
         <p id="duration"></p>
       </div>
+      <div id="fare-results" class="hidden">
+        <table class="fare-table">
+            <tr id="fare-row">
+                <!-- Uber Column -->
+                <td>
+                    <img src="/images/vids/uber.png" alt="Uber Logo" class="fare-logo">
+                    <p>Uber</p>
+                    <p class="fare-price">₹0.00</p>
+                </td>
+                <!-- Ola Column -->
+                <td>
+                    <img src="/images/vids/ola.png" alt="Ola Logo" class="fare-logo">
+                    <p>Ola</p>
+                    <p class="fare-price">₹0.00</p>
+                </td>
+                <!-- Rapido Column -->
+                <td>
+                    <img src="/images/vids/rapido.jpeg" alt="Rapido Logo" class="fare-logo">
+                    <p>Rapido</p>
+                    <p class="fare-price">₹0.00</p>
+                </td>
+            </tr>
+        </table>
+    </div>
     </div>
 
     <script>
