@@ -1,4 +1,4 @@
-/* Make sure the body and html cover the full viewport */
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
@@ -6,40 +6,40 @@
 
 html, body {
   background-color: black;
-  height: 10000px;
+  height: auto;
   margin: 0;
   overflow:auto;
   scroll-behavior: smooth;
 }
 
 #background-video {
-  position: absolute; /* Position the video behind the content */
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the video covers the whole viewport */
-  z-index: 1; /* Send the video to the background */
+  object-fit: cover; 
+  z-index: 1; 
 }
 
 .content {
-  position: absolute; /* Position the content absolutely */
-  top: 50%; /* Move the content vertically to the center */
-  left: 50%; /* Move the content horizontally to the center */
-  transform: translate(-50%, -50%); /* Adjust the position so it's perfectly centered */
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
   text-align: center;
   color: white;
-  z-index: 1; /* Ensure content stays on top of the video */
+  z-index: 1; 
   font-family: arial;
   justify-content: left;
 }
 
 h1 {
-  font-size: 5em; /* Adjust the font size */
+  font-size: 5em; 
 }
 
 p {
-  font-size: 1.5em; /* Adjust the font size for the paragraph */
+  font-size: 1.5em; 
 }
 
 .pric{
@@ -87,7 +87,7 @@ p {
  }
 
  #prices-section {
-  height: 1000px; /* Example height to make sure the section is long enough to scroll */
+  height: auto; 
   padding-top:0px;
   padding-left:50px;
   padding-right:50px;
@@ -147,7 +147,6 @@ p {
   margin-bottom: 4px;
 }
 
-/* Input Box */
 .input-box {
   display: inline-block;
   align-items: center;
@@ -167,14 +166,14 @@ p {
   display: inline-block;
 }
 
-/* Swap Icon */
+
 .swap-icon {
   color: #9ca3af;
   font-size: 20px;
   display: inline-block;
 }
 
-/* Search Button */
+
 .search-btn {
   width: 6.5em;
   height: 2.3em;
@@ -215,10 +214,11 @@ p {
  }
 
 .navbar {
-  padding-top: 0px;
+  padding: 10px 0; 
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  position: fixed; 
+
   top: 0;
   left: 0;
   width: 100%;
@@ -227,8 +227,9 @@ p {
   display: flex;
   justify-content: right;
   align-items: center;
-  position: relative;
-  z-index: 2;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); 
+
   
 }
 
@@ -1263,7 +1264,7 @@ body {
   }
 }
 
-/* Apply animations to sections */
+
 section.animate-section {
   animation: fadeInUp 1s ease-out forwards;
 }
@@ -1281,7 +1282,24 @@ section.animate-section {
 }
 
 section {
-  opacity: 0; /* Hide sections by default */
-  transform: translateY(50px); /* Move sections down slightly */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Smooth transitions */
+  opacity: 0; 
+  transform: translateY(50px); 
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /
+}
+
+.githubimg{
+  
+            max-height: 30px; 
+            display: block; 
+            margin: auto; 
+            border-radius: 500px;
+            cursor: pointer;
+}
+
+.googleimg{
+  max-height: 30px; 
+            display: block; 
+            margin: auto; 
+            border-radius: 500px;
+            cursor: pointer;
 }

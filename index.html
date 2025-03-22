@@ -15,14 +15,14 @@
     <a href="#contact">Contact</a>
 </div>
 
-    <!-- Video background -->
+   
     <video autoplay muted loop id="background-video">
         <source src="/images/vids/World map.mp4" type="video/mp4">
         </video>
 
     
 
-    <!-- Centered content -->
+    
     <div class="content">
         <h1>FareFinder</h1>
         <a href="#prices-section">
@@ -41,43 +41,123 @@
             <p class="p2">
                 Compare prices across multiple transportation options to get the best deals on your travel
               </p>
-              <div class = "destination">
-              <div class="input-group">
-                <label>FROM</label>
-                <div class="input-box">
-                    <span class="icon">📍</span>
-                    <span class="text">Select origin city</span>
-                </div>
-            </div>
+              <!DOCTYPE html>
+<html>
+  <head>
+    <title>FareFinder - Distance Calculator</title>
+    <script>
+      function initMap() {
+        const indiaBounds = {
+          north: 35.5133,
+          south: 6.4627,
+          west: 68.1097,
+          east: 97.3953,
+        };
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 20.5937, lng: 78.9629 }, 
+          zoom: 5,
+          restriction: {
+            latLngBounds: indiaBounds,
+            strictBounds: true,
+          },
+        });
+
         
-          
+        const originInput = document.getElementById("origin");
+        const destinationInput = document.getElementById("destination");
 
-        <!-- Swap Icon -->
-        <div class="swap-icon">⇆</div>
+        const autocompleteOrigin = new google.maps.places.Autocomplete(originInput, {
+          componentRestrictions: { country: "IN" },
+          fields: ["geometry", "name"],
+        });
 
-        <!-- To Input -->
-        <div class="input-group">
-            <label>TO</label>
-            <div class="input-box">
-                <span class="icon">📍</span>
-                <span class="text">Select destination city</span>
-            </div>
-        </div>
+        const autocompleteDestination = new google.maps.places.Autocomplete(destinationInput, {
+          componentRestrictions: { country: "IN" },
+          fields: ["geometry", "name"],
+        });
 
-        <!-- Date Input -->
-        <div class="input-group">
-            <label>DATE</label>
-            <div class="input-box">
-                <span class="icon">📅</span>
-                <span class="text"></span>
-            </div>
-        </div>
+        const service = new google.maps.DistanceMatrixService();
 
-        <!-- Search Button -->
-        <button class="search-btn">Search</button>
-         </div>
-         </div>
-        </div>
+        document.getElementById("calculate").addEventListener("click", () => {
+            const origin = document.getElementById("origin").value;
+            const destination = document.getElementById("destination").value;
+
+          if (!origin || !destination) {
+            alert("Please enter both origin and destination!");
+            return;
+          }
+
+          const request = {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            region: "IN", 
+          };
+
+          service.getDistanceMatrix(request).then((response) => {
+            const result = response.rows[0].elements[0];
+            if (result.status === "OK") {
+              document.getElementById("distance").innerText = `Distance: ${result.distance.text}`;
+              document.getElementById("duration").innerText = `Duration: ${result.duration.text}`;
+            } else {
+              alert("Could not calculate distance. Try again.");
+            }
+          });
+        });
+      }
+      window.initMap = initMap;
+    </script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      .container {
+        margin-top: 20px;
+      }
+      input, button {
+        padding: 10px;
+        margin: 5px;
+        font-size: 16px;
+      }
+      #result {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1></h1>
+    <div id="map"></div>
+    
+    <div class="container">
+      <input id="origin" type="text" placeholder="Enter starting location" />
+      <input id="destination" type="text" placeholder="Enter destination" />
+      <button id="calculate">Calculate Distance</button>
+      <div id="result">
+        <p id="distance"></p>
+        <p id="duration"></p>
+      </div>
+    </div>
+
+    <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJD67cunZ7a3KIt6zaqR2RmhY_RSsXq8U
+  &libraries=places&callback=initMap"
+  async defer
+></script>
+  </body>
+</html>
         
         </section>
 
@@ -91,18 +171,14 @@
                     Welcome to our platform—a dynamic hub designed to simplify your choices and maximize your savings. By analyzing real-time data, we compare price ranges across various service apps for booking taxi and provide you with personalized recommendations. With us, you’ll always find the most affordable option at your fingertips.
                   </p>
                   <div class="social-icons-container">
-                    <a class="social-icon">
-                      <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png">
+                    
+                    <a href = "https://mail.google.com/mail/"class="social-icon">
+                      <img class="socialIcon image-block" src="/images/vids/gmaillogo.png">
                     </a>
-                    <a class="social-icon">
-                      <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png">
+                    <a href="https://github.com/ArnavVasishtSharma/FareFinder" class="social-icon">
+                      <img class="githubimg " src="/images/vids/githublogo.png">
                     </a>
-                    <a class="social-icon">
-                      <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png">
-                    </a>
-                    <a class="social-icon">
-                      <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png">
-                    </a>
+                    
                   </div>
                 </div>
               </div>
@@ -126,18 +202,14 @@
                     How to Reach Us:
                 </p>
                 <div class="icons-container">
-                  <a class="share-icon">
-                    <img class="img" src="https://workik-widget-assets.s3.amazonaws.com/Footer1-83/v1/images/Icon-twitter.png">
+                  
+                  <a href = "https://mail.google.com/mail/"class="share-icon">
+                    <img class="googleimg" src="/images/vids/gmaillogo.png">
                   </a>
-                  <a class="share-icon">
-                    <img class="img" src="/images/vids/gmaillogo.png">
+                  <a href="https://github.com/ArnavVasishtSharma/FareFinder"class="share-icon">
+                    <img class="githubimg" src="/images/vids/githublogo.png">
                   </a>
-                  <a class="share-icon">
-                    <img class="img" src="https://workik-widget-assets.s3.amazonaws.com/Footer1-83/v1/images/Icon-google.png">
-                  </a>
-                  <a class="share-icon">
-                    <img class="img" src="https://workik-widget-assets.s3.amazonaws.com/Footer1-83/v1/images/Icon-instagram.png">
-                  </a>
+                  
                 </div>
               </div>
             </div>
