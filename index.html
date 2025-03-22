@@ -44,72 +44,7 @@
               <!DOCTYPE html>
 <html>
   <head>
-    <title>FareFinder - Distance Calculator</title>
-    <script>
-      function initMap() {
-        const indiaBounds = {
-          north: 35.5133,
-          south: 6.4627,
-          west: 68.1097,
-          east: 97.3953,
-        };
-
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 20.5937, lng: 78.9629 }, 
-          zoom: 5,
-          restriction: {
-            latLngBounds: indiaBounds,
-            strictBounds: true,
-          },
-        });
-
-        
-        const originInput = document.getElementById("origin");
-        const destinationInput = document.getElementById("destination");
-
-        const autocompleteOrigin = new google.maps.places.Autocomplete(originInput, {
-          componentRestrictions: { country: "IN" },
-          fields: ["geometry", "name"],
-        });
-
-        const autocompleteDestination = new google.maps.places.Autocomplete(destinationInput, {
-          componentRestrictions: { country: "IN" },
-          fields: ["geometry", "name"],
-        });
-
-        const service = new google.maps.DistanceMatrixService();
-
-        document.getElementById("calculate").addEventListener("click", () => {
-            const origin = document.getElementById("origin").value;
-            const destination = document.getElementById("destination").value;
-
-          if (!origin || !destination) {
-            alert("Please enter both origin and destination!");
-            return;
-          }
-
-          const request = {
-            origins: [origin],
-            destinations: [destination],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            region: "IN", 
-          };
-
-          service.getDistanceMatrix(request).then((response) => {
-            const result = response.rows[0].elements[0];
-            if (result.status === "OK") {
-              document.getElementById("distance").innerText = `Distance: ${result.distance.text}`;
-              document.getElementById("duration").innerText = `Duration: ${result.duration.text}`;
-            } else {
-              alert("Could not calculate distance. Try again.");
-            }
-          });
-        });
-      }
-      window.initMap = initMap;
-    </script>
-
+    <title>FareFinder - Distance Calculator (TomTom API)</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -135,12 +70,17 @@
         font-weight: bold;
       }
     </style>
+    <!-- Load TomTom Maps SDK -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css"
+    />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
   </head>
-
   <body>
-    <h1></h1>
+    <h1>FareFinder - Distance Calculator (TomTom API)</h1>
     <div id="map"></div>
-    
     <div class="container">
       <input id="origin" type="text" placeholder="Enter starting location" />
       <input id="destination" type="text" placeholder="Enter destination" />
@@ -151,11 +91,80 @@
       </div>
     </div>
 
-    <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJD67cunZ7a3KIt6zaqR2RmhY_RSsXq8U
-  &libraries=places&callback=initMap"
-  async defer
-></script>
+    <script>
+      // TomTom API Key
+      const apiKey = "0jU79DjrYu5k3GYzUtR5FDAeBRLHlJHr";
+
+      // Initialize the map
+      const map = tt.map({
+        key: apiKey, // Your TomTom API key
+        container: "map", // Div ID where the map will be rendered
+        center: [78.9629, 20.5937], // Centered in India
+        zoom: 5, // Initial zoom level
+      });
+
+      // Function to get latitude and longitude using Geocoding API
+      function getCoordinates(location) {
+        const geocodeUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(location)}.json?key=${apiKey}`;
+        return fetch(geocodeUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.results && data.results.length > 0) {
+              const position = data.results[0].position;
+              return [position.lat, position.lon];
+            } else {
+              throw new Error(`Location not found: ${location}`);
+            }
+          });
+      }
+
+      // Function to calculate distance using TomTom Routing API
+      function calculateDistance(originCoords, destinationCoords) {
+        const routeUrl = `https://api.tomtom.com/routing/1/calculateRoute/${originCoords.join(',')}:${destinationCoords.join(',')}/json?key=${apiKey}`;
+
+        fetch(routeUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.routes && data.routes.length > 0) {
+              const route = data.routes[0];
+              const distance = route.summary.lengthInMeters / 1000; // Convert meters to kilometers
+              const duration = route.summary.travelTimeInSeconds / 60; // Convert seconds to minutes
+
+              document.getElementById("distance").innerText = `Distance: ${distance.toFixed(2)} km`;
+              document.getElementById("duration").innerText = `Duration: ${duration.toFixed(2)} minutes`;
+            } else {
+              alert("Could not calculate distance. Please check the locations and try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred while calculating distance.");
+          });
+      }
+
+      // Event listener for the Calculate button
+      document.getElementById("calculate").addEventListener("click", async () => {
+        const origin = document.getElementById("origin").value;
+        const destination = document.getElementById("destination").value;
+
+        if (!origin || !destination) {
+          alert("Please enter both origin and destination!");
+          return;
+        }
+
+        try {
+          // Get coordinates for origin and destination
+          const originCoords = await getCoordinates(origin);
+          const destinationCoords = await getCoordinates(destination);
+
+          // Calculate distance
+          calculateDistance(originCoords, destinationCoords);
+        } catch (error) {
+          console.error("Error:", error);
+          alert(error.message);
+        }
+      });
+    </script>
   </body>
 </html>
         
