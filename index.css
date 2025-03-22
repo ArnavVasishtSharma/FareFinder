@@ -31,6 +31,7 @@ html, body {
   color: white;
   z-index: 1; /* Ensure content stays on top of the video */
   font-family: arial;
+  justify-content: left;
 }
 
 h1 {
@@ -41,6 +42,10 @@ p {
   font-size: 1.5em; /* Adjust the font size for the paragraph */
 }
 
+.pric{
+  justify-content: center;
+  align-items: center;
+}
 
 
 
@@ -83,7 +88,10 @@ p {
 
  #prices-section {
   height: 1000px; /* Example height to make sure the section is long enough to scroll */
-  padding: 50px;
+  padding-top:0px;
+  padding-left:50px;
+  padding-right:50px;
+  padding-bottom:50px;
 }
 
 .second-page{
@@ -120,13 +128,16 @@ p {
   font-family:Arial, Helvetica, sans-serif;
   margin: block end 16px;
   line-height:48px;
-  text-align: center;
   margin-top: 0px;
+  align-items: center;
 }
 
 .input-group {
   font-size: 20px;
   display:inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
 }
 
@@ -237,9 +248,19 @@ p {
   position: relative;
 }
 
+.destination{
+  justify-content: center;
+  text-align: center;
+}
+
+.text-blk{
+  color:white;
+}
+
+
 .about-section {
   background-image: url();
-  color: rgb(251, 249, 249);
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 50px 20px;
   margin-top: 600px;
@@ -513,6 +534,7 @@ p {
   padding-bottom: 0px;
   padding-left: 50px;
   position: relative;
+  margin-bottom: 200px;
 }
 
 .landing_page .bg-img {
@@ -803,6 +825,7 @@ body {
 }
 
 .text-blk {
+  font-family: Arial;
   margin-top: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -860,7 +883,7 @@ body {
   margin-right: auto;
   margin-bottom: 150px;
   margin-left: auto;
-  background-color: white;
+  background-color: black;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -868,6 +891,7 @@ body {
 }
 
 .text-blk.heading {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   line-height: 45px;
   font-weight: 800;
@@ -878,7 +902,9 @@ body {
 }
 
 .text-blk.subHeading {
+  line-height: 10px;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   line-height: 26px;
   margin-top: 0px;
@@ -1197,4 +1223,65 @@ body {
   .wk-mobile-12 {
     width: 100%;
   }
+}
+
+.responsive-container-block {
+  margin-bottom: 200px;
+}
+
+/* Define animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply animations to sections */
+section.animate-section {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+#prices-section.animate-section {
+  animation: fadeInLeft 1s ease-out forwards;
+}
+
+#about.animate-section {
+  animation: fadeInRight 1s ease-out forwards;
+}
+
+#contact.animate-section {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+section {
+  opacity: 0; /* Hide sections by default */
+  transform: translateY(50px); /* Move sections down slightly */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Smooth transitions */
 }
