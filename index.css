@@ -114,10 +114,17 @@ p {
 }
 
 .p1{
-  margin: bottom 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px #17C3B2;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .p2{
+  box-shadow: 2px 2px 4px gray;
   color: grey;
   font: size 26px;
   position: relative;
@@ -260,15 +267,27 @@ p {
 
 
 .about-section {
-  background-image: url();
-  color: rgb(0, 0, 0);
+  color:white;
   text-align: center;
   padding: 50px 20px;
-  margin-top: 600px;
   border: gray;
   border-radius: 50px;
   border-style: solid;
-  
+  display: flex; /* Use Flexbox for layout */
+  align-items: center; /* Vertically center the content */
+  justify-content: space-between; /* Space out the image and text */
+  margin-bottom: 150px;
+}
+
+.about-section img {
+  max-width: 40%; /* Adjust the width of the image */
+  border-radius: 20px; /* Optional: Add rounded corners to the image */
+  margin-right: 20px; /* Add some spacing between the image and text */
+}
+
+.about-section .text-content {
+  max-width: 50%; /* Adjust the width of the text content */
+  text-align: left; /* Align text to the left */
 }
 
 .about-section h2 {
@@ -278,8 +297,6 @@ p {
 
 .about-section p {
   font-size: 1.2em;
-  max-width: 800px;
-  margin: 0 auto;
   line-height: 1.6;
 }
 
@@ -548,6 +565,7 @@ p {
   height: 100%;
   opacity: 0.5;
   object-fit: cover;
+  border-radius: 35px;
 }
 
 @media (max-width: 768px) {
@@ -1292,7 +1310,7 @@ section {
             max-height: 30px; 
             display: block; 
             margin: auto; 
-            border-radius: 500px;
+            border-radius: 700px;
             cursor: pointer;
 }
 
@@ -1470,3 +1488,13 @@ section {
   width: 100%;
   padding-left: 40px; /* Add padding for icon */
 }
+
+.social-icon img {
+  width: 40px; /* Set a fixed width */
+  height: auto; /* Allow height to adjust automatically */
+  border-radius: 20%; /* Optional: Make the logos circular */
+  object-fit: contain; /* Ensure the image fits within the dimensions without stretching */
+}
+
+
+
